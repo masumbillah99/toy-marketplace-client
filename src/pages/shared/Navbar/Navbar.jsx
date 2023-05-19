@@ -33,13 +33,16 @@ const Navbar = () => {
           <li>
             <img
               className="w-20"
-              src={user?.photoURL}
+              src={user.photoURL}
               alt="user photo"
-              title={user?.displayName}
+              title={user.displayName}
             />
           </li>
           <li>
-            <button onClick={handleLogOut} className="text-white bg-red-500">
+            <button
+              onClick={handleLogOut}
+              className="text-white bg-red-500 px-5 py-1"
+            >
               Logout
             </button>
           </li>

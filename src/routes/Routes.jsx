@@ -4,10 +4,10 @@ import LoginLayout from "../layouts/LoginLayout";
 import Main from "../layouts/Main";
 import SingleToyLayout from "../layouts/SingleToyLayout";
 import SingleToy from "../pages/Home/SingleToy/SingleToy";
-import ToyModal from "../pages/Home/ToysCard/ToyModal";
 import ToysCard from "../pages/Home/ToysCard/ToysCard";
 import Login from "../pages/Login/Login/Login";
 import Register from "../pages/Login/Register/Register";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -48,7 +48,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/toys/:id",
-        element: <SingleToy />,
+        element: (
+          <PrivateRoute>
+            <SingleToy />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/carToys/${params.id}`),
       },

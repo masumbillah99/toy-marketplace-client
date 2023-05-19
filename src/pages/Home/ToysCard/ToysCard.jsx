@@ -1,7 +1,6 @@
 import { Link, useLoaderData } from "react-router-dom";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
-import ToyModal from "./ToyModal";
 
 const CarToys = () => {
   const allCarToys = useLoaderData();

@@ -62,7 +62,7 @@ const Register = () => {
   return (
     <div className="max-w-screen-xl mx-auto my-20">
       <h1 className="mb-5 text-2xl font-bold text-center underline">
-        Register E-Car Toys Store
+        Register E-Toys Car Store
       </h1>
       <div className="grid grid-cols-1 lg:grid-cols-2 items-center">
         <img src={loginImg} className="w-3/4 lg:w-full" alt="" />
@@ -166,7 +166,7 @@ const Register = () => {
           </div>
         </div>
       </div>
-      <ToastContainer></ToastContainer>
+      <ToastContainer />
     </div>
   );
 };

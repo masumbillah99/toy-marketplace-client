@@ -1,12 +1,10 @@
 import { Rating } from "@smastrom/react-rating";
 import { useLoaderData } from "react-router-dom";
 import { FaUserCircle, FaLocationArrow } from "react-icons/fa";
-import SingleToyCard from "./SingleToyCard";
 
 const SingleToy = () => {
   const toyDetails = useLoaderData();
   const {
-    _id,
     picture,
     toy_name,
     seller_name,
