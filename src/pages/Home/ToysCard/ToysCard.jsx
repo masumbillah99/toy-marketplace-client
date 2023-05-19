@@ -33,10 +33,9 @@ const CarToys = () => {
                 />
               </div>
               <div className="card-actions mt-3">
-                {/* <Link to={`/toys/${toys._id}`} className="btn btn-primary">
+                <Link to={`/toys/${toys._id}`} className="btn btn-primary">
                   View Details
-                </Link> */}
-                <ToyModal toyDetails={toys} />
+                </Link>
               </div>
             </div>
           </div>

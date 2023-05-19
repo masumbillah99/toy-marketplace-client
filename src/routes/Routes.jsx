@@ -2,6 +2,7 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import LoginLayout from "../layouts/LoginLayout";
 import Main from "../layouts/Main";
+import SingleToyLayout from "../layouts/SingleToyLayout";
 import SingleToy from "../pages/Home/SingleToy/SingleToy";
 import ToyModal from "../pages/Home/ToysCard/ToyModal";
 import ToysCard from "../pages/Home/ToysCard/ToysCard";
@@ -26,12 +27,6 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register />,
       },
-      {
-        path: "/toys/:id",
-        element: <SingleToy />,
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/carToys/${params.id}`),
-      },
     ],
   },
   {
@@ -44,6 +39,18 @@ const router = createBrowserRouter([
         element: <ToysCard />,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/categories/${params.id}`),
+      },
+    ],
+  },
+  {
+    path: "/",
+    element: <SingleToyLayout />,
+    children: [
+      {
+        path: "/toys/:id",
+        element: <SingleToy />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/carToys/${params.id}`),
       },
     ],
   },
