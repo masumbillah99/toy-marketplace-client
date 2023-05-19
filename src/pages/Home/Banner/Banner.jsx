@@ -5,8 +5,8 @@ const Banner = () => {
   return (
     <div>
       <Carousel
-        // autoPlay={true}
-        // interval={6000}
+        autoPlay={true}
+        interval={6000}
         showThumbs={false}
         showArrows={false}
         showIndicators={true}
