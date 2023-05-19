@@ -3,13 +3,14 @@ import { Carousel } from "react-responsive-carousel";
 
 const Banner = () => {
   return (
-    <div>
+    <>
       <Carousel
         autoPlay={true}
-        interval={6000}
+        interval={3000}
         showThumbs={false}
         showArrows={false}
         showIndicators={true}
+        showStatus={false}
       >
         <div className="relative">
           <img
@@ -50,7 +51,7 @@ const Banner = () => {
           </div>
         </div>
       </Carousel>
-    </div>
+    </>
   );
 };
 
