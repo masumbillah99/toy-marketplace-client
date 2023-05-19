@@ -7,7 +7,6 @@ import v from "../../../assets/brands/5.jpg";
 import vi from "../../../assets/brands/6.jpg";
 import vii from "../../../assets/brands/7.png";
 import viii from "../../../assets/brands/9.jpg";
-// import vi from '../../../assets/brands';
 
 const Brands = () => {
   return (
@@ -15,7 +14,7 @@ const Brands = () => {
       <h3 className="text-3xl font-bold">Shop By Brands</h3>
       <hr className="bg-indigo-700 w-3/4 lg:w-1/3 h-1 mt-2 mb-7" />
 
-      <Marquee speed={100} direction="right">
+      <Marquee speed={100} direction="right" pauseOnHover={true}>
         <div className="mx-4">
           <img className="w-full h-24 border" src={i} alt="" />
         </div>

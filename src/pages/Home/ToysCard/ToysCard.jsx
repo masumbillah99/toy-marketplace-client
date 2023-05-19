@@ -1,10 +1,10 @@
 import { Link, useLoaderData } from "react-router-dom";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
+import ToyModal from "./ToyModal";
 
 const CarToys = () => {
   const allCarToys = useLoaderData();
-  //   console.log(allCarToys);
 
   return (
     <div className="max-w-screen-xl mx-auto my-20 px-2 md:px-10 lg:px-0">
@@ -33,9 +33,10 @@ const CarToys = () => {
                 />
               </div>
               <div className="card-actions mt-3">
-                <Link to="/" className="btn btn-primary">
+                {/* <Link to={`/toys/${toys._id}`} className="btn btn-primary">
                   View Details
-                </Link>
+                </Link> */}
+                <ToyModal toyDetails={toys} />
               </div>
             </div>
           </div>
