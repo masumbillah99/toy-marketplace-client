@@ -21,7 +21,7 @@ const Gallery = () => {
     <div className="my-20 max-w-screen-xl mx-auto px-2 md:px-5 lg:px-0">
       <h3 className="text-3xl font-bold">Car Toys Gallery</h3>
       <hr className="bg-indigo-700 w-1/2 lg:w-1/3 h-1 mt-2 mb-5" />
-      <LazyLoad height={900} offset={300}>
+      <LazyLoad offset={300}>
         <div className="grid grid-cols-4 gap-3">
           <img src={seven} alt="" />
           <img src={two} alt="" />
