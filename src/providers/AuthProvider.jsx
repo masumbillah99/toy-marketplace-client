@@ -1,7 +1,6 @@
 import {
   createUserWithEmailAndPassword,
   getAuth,
-  GithubAuthProvider,
   GoogleAuthProvider,
   onAuthStateChanged,
   sendPasswordResetEmail,
@@ -19,7 +18,6 @@ export const AuthContext = createContext(null);
 // initialize firebase authentication
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
-const githubProvider = new GithubAuthProvider();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -47,7 +45,6 @@ const AuthProvider = ({ children }) => {
   // observer auth state change
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (loggedUser) => {
-      // console.log("logged in user", loggedUser);
       setUser(loggedUser);
       setLoading(false);
     });
@@ -75,17 +72,10 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
 
-  // github sign in
-  const githubSignIn = () => {
-    return signInWithPopup(auth, githubProvider);
-  };
-
   // reset password
   const resetPassword = (email) => {
     return sendPasswordResetEmail(auth, email);
   };
-
-  // react-pdf for download pdf
 
   const authInfo = {
     user,
@@ -96,7 +86,6 @@ const AuthProvider = ({ children }) => {
     updateUserProfile,
     updateUserEmail,
     googleSignIn,
-    githubSignIn,
     resetPassword,
   };
 
