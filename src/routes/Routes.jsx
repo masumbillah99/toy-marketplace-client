@@ -52,6 +52,10 @@ const router = createBrowserRouter([
     element: <SingleToyLayout />,
     children: [
       {
+        path: "/",
+        element: <Navigate to="/category/0" />,
+      },
+      {
         path: "/toys/:id",
         element: (
           <PrivateRoute>
