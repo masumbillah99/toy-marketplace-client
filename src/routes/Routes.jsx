@@ -8,6 +8,8 @@ import ToysCard from "../pages/Home/ToysCard/ToysCard";
 import Login from "../pages/Login/Login/Login";
 import Register from "../pages/Login/Register/Register";
 import AddToys from "../pages/Toys/AddToys/AddToys";
+import AllToys from "../pages/Toys/All Toys/AllToys";
+import MyToys from "../pages/Toys/MyToys/MyToys";
 import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
@@ -68,6 +70,23 @@ const router = createBrowserRouter([
             <AddToys />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/myToys",
+        element: (
+          <PrivateRoute>
+            <MyToys />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/allToys",
+        element: (
+          <PrivateRoute>
+            <AllToys />
+          </PrivateRoute>
+        ),
+        loader: () => fetch("http://localhost:5000/allPostToys"),
       },
     ],
   },

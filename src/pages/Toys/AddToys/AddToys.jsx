@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../providers/AuthProvider";
 import Select from "react-select";
+import { toast, ToastContainer } from "react-toastify";
 
 const AddToys = () => {
   const { user } = useContext(AuthContext);
@@ -11,7 +12,26 @@ const AddToys = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+
+  const onSubmit = (data, e) => {
+    data.sub_category = selectedOption;
+    console.log(data);
+    fetch("http://localhost:5000/postToys", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        // console.log(result);
+        if (result.insertedId) {
+          toast.success("Successfully add a new toy");
+          e.target.reset();
+        }
+      });
+  };
 
   const options = [
     { value: "Truck", label: "Truck" },
@@ -35,14 +55,14 @@ const AddToys = () => {
             className="input input-bordered input-primary w-full"
             {...register("toy_name")}
             placeholder="Toy name"
-            defaultValue="Super Speed Car"
+            defaultValue="Music Car"
           />
           <input
             className="input input-bordered input-primary w-full"
-            {...register("picture")}
+            {...register("picture", { required: true })}
             placeholder="Photo URL"
             type="url"
-            defaultValue=""
+            defaultValue="https://images.pexels.com/photos/1592384/pexels-photo-1592384.jpeg?auto=compress&cs=tinysrgb&w=1600"
           />
         </div>
         <div className="flex flex-col md:flex-row gap-3 my-5">
@@ -76,31 +96,32 @@ const AddToys = () => {
         </div>
         <div className="flex flex-col md:flex-row gap-3 my-5">
           <input
-            className="input input-bordered input-primary w-full"
+            className="input input-bordered input-primary w-1/2"
             {...register("price", { required: true })}
             placeholder="Toy Price"
             type="number"
+          />
+          <input
+            className="input input-bordered input-primary w-1/2"
+            {...register("rating")}
+            placeholder="Toy Rating"
+            type="number"
+            defaultValue="4.3"
           />
         </div>
         <textarea
           className="textarea textarea-md input-primary w-full"
           {...register("description")}
           placeholder="description"
+          defaultValue="This is a awesome car. I like this car"
         />
-        {/* <input
-          className="input input-bordered input-primary "
-          {...register("salary", { required: true })}
-          placeholder="salary"
-          defaultValue="30k"
-        /> */}
-        {/* <input
-          className="input input-bordered input-primary "
-          {...register("deadline")}
-          placeholder="deadline"
-          type="date"
-        /> */}
-        <input className="btn btn-primary w-full mt-5" value="Post Job" type="submit" />
+        <input
+          className="btn btn-primary w-full mt-5"
+          value="Add New Toy"
+          type="submit"
+        />
       </form>
+      <ToastContainer />
     </div>
   );
 };
