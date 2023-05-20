@@ -1,9 +1,24 @@
-import { useLoaderData } from "react-router-dom";
-// import banner from "../../../assets/gallery/banner.jpeg";
+import { useEffect } from "react";
+import { useState } from "react";
 import ToyTable from "./ToyTable";
 
 const AllToys = () => {
-  const postToys = useLoaderData();
+  const [postToys, setPostToys] = useState([]);
+  const [searchText, setSearchText] = useState("");
+
+  useEffect(() => {
+    fetch("http://localhost:5000/allPostToys")
+      .then((res) => res.json())
+      .then((data) => setPostToys(data));
+  }, []);
+
+  const handleSearch = () => {
+    fetch(`http://localhost:5000/toySearchByName/${searchText}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setPostToys(data);
+      });
+  };
 
   return (
     <div className="max-w-screen-xl mx-auto my-10">
@@ -20,6 +35,20 @@ const AllToys = () => {
         </div>
       </div>
       <div>
+        <div className="form-control flex-row items-center my-5 justify-center">
+          <input
+            onChange={(e) => setSearchText(e.target.value)}
+            type="text"
+            placeholder="search toy name or category"
+            className="input input-bordered w-1/2 mr-5"
+          />
+          <input
+            onClick={handleSearch}
+            className="btn btn-primary w-1/5"
+            type="submit"
+            value="Search"
+          />
+        </div>
         {postToys?.map((toys) => (
           <ToyTable key={toys._id} toys={toys} />
         ))}

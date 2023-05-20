@@ -5,18 +5,15 @@ const ToyTable = ({ toys }) => {
     toys || {};
 
   return (
-    <div>
+    <>
       <div className="overflow-x-auto w-full">
         <table className="table w-full">
           <tbody className="">
             <tr className="border">
-              <th>
-                <button className="btn btn-circle btn-xs">X</button>
-              </th>
               <td className="my-3">
                 <div className="flex items-center space-x-3">
-                  <div className="avatar">
-                    <figure className="mask w-20 h-20 rounded-lg">
+                  <div className="avatar mr-10">
+                    <figure className="mask w-32 h-20 rounded-lg">
                       <img src={picture} alt="car picture" />
                     </figure>
                   </div>
@@ -45,7 +42,7 @@ const ToyTable = ({ toys }) => {
           </tbody>
         </table>
       </div>
-    </div>
+    </>
   );
 };
 
