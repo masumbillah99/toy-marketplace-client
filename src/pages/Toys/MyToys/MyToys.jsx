@@ -1,9 +1,12 @@
 import { useState, useContext, useEffect } from "react";
+import { toast, ToastContainer } from "react-toastify";
 import { AuthContext } from "../../../providers/AuthProvider";
+import UpdateModal from "./UpdateModal";
 
 const MyToys = () => {
   const { user } = useContext(AuthContext);
   const [myToys, setMyToys] = useState([]);
+  const [control, setControl] = useState(false);
 
   useEffect(() => {
     fetch(`http://localhost:5000/myToys/${user?.email}`)
@@ -11,17 +14,32 @@ const MyToys = () => {
       .then((data) => {
         setMyToys(data);
       });
-  }, [user]);
+  }, [user, control]);
+
+  const handleToyUpdate = (data) => {
+    fetch(`http://localhost:5000/updateToy/${data?._id}`, {
+      method: "PUT",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.modifiedCount > 0) {
+          toast.success("updated successfully");
+          setControl(!control);
+        }
+      });
+  };
 
   return (
-    <div className="max-w-screen-xl mx-auto my-20">
+    <div className="max-w-screen-xl mx-auto my-20 md:px-10 lg:px-0">
       <h3 className="text-2xl font-bold">My Add Toys</h3>
       <hr className="bg-indigo-500 w-1/4 h-1 mt-2 mb-5" />
-      <div className="px-10">
+      <div className="md:px-10">
         {myToys?.map((toys) => (
           <div className="overflow-x-auto w-full" key={toys?._id}>
             <table className="table w-full">
-              <tbody className="">
+              <tbody>
                 <tr className="border">
                   <td className="my-3">
                     <div className="flex items-center space-x-3">
@@ -48,16 +66,22 @@ const MyToys = () => {
                       Quantity: {toys?.quantity}
                     </span>
                   </td>
-                  <th>
-                    <button className="btn btn-primary">Update</button>
+                  <td className="ms-auto">
+                    <UpdateModal
+                      toys={toys}
+                      handleToyUpdate={handleToyUpdate}
+                    />
+                  </td>
+                  <td>
                     <button className="btn btn-warning ml-10">Delete</button>
-                  </th>
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         ))}
       </div>
+      <ToastContainer />
     </div>
   );
 };
