@@ -14,13 +14,13 @@ const SingleToy = () => {
     description,
     sub_category,
     seller_email,
-  } = toyDetails;
+  } = toyDetails || {};
 
   return (
     <div className="max-w-screen-xl mx-auto my-20">
-      <div className="card lg:card-side gap-3 shadow-xl p-5">
+      <div className="card lg:card-side gap-3 shadow-xl p-5 mx-2 lg:mx-0">
         <figure>
-          <img className="w-full" src={picture} alt="car" />
+          <img className="lg:w-full" src={picture} alt="car" />
         </figure>
         <div className="card-body">
           <h2 className="card-title text-4xl font-bold">{toy_name}</h2>
@@ -36,13 +36,13 @@ const SingleToy = () => {
             <p className="bg-orange-400 rounded-lg p-5">
               Price: <span className="font-bold text-xl">${price}</span>
             </p>
-            <p className="bg-blue-200 p-5 rounded-lg">
+            <div className="bg-blue-200 p-5 rounded-lg">
               <Rating
                 style={{ maxWidth: 100 }}
                 value={Math.round(rating || 0)}
                 readOnly
               />
-            </p>
+            </div>
           </div>
           <div className="my-5">
             <h4 className="text-xl font-bold">Seller Information</h4>

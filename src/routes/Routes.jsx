@@ -7,6 +7,7 @@ import SingleToy from "../pages/Home/SingleToy/SingleToy";
 import ToysCard from "../pages/Home/ToysCard/ToysCard";
 import Login from "../pages/Login/Login/Login";
 import Register from "../pages/Login/Register/Register";
+import AddToys from "../pages/Toys/AddToys/AddToys";
 import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
@@ -38,7 +39,9 @@ const router = createBrowserRouter([
         path: "/category/:id",
         element: <ToysCard />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/categories/${params.id}`),
+          fetch(
+            `https://toy-ass11-server-side.vercel.app/categories/${params.id}`
+          ),
       },
     ],
   },
@@ -54,7 +57,17 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/carToys/${params.id}`),
+          fetch(
+            `https://toy-ass11-server-side.vercel.app/carToys/${params.id}`
+          ),
+      },
+      {
+        path: "/addToys",
+        element: (
+          <PrivateRoute>
+            <AddToys />
+          </PrivateRoute>
+        ),
       },
     ],
   },
