@@ -5,12 +5,14 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../../providers/AuthProvider";
 import UpdateModal from "./UpdateModal";
 import { useForm } from "react-hook-form";
+import useTitle from "../../../hooks/useTitle";
 
 const MyToys = () => {
   const { user } = useContext(AuthContext);
   const [myToys, setMyToys] = useState([]);
   const [control, setControl] = useState(false);
   const [modalShow, setModalShow] = useState(false);
+  useTitle("myToys");
   const {
     register,
     handleSubmit,

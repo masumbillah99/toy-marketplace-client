@@ -4,6 +4,7 @@ import { toast, ToastContainer } from "react-toastify";
 import loginImg from "../../../assets/login.png";
 import { BiError } from "react-icons/bi";
 import { AuthContext } from "../../../providers/AuthProvider";
+import useTitle from "../../../hooks/useTitle";
 
 const Register = () => {
   const { registerUser, updateUserProfile } = useContext(AuthContext);
@@ -13,6 +14,7 @@ const Register = () => {
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
   const [passError, setPassError] = useState("");
+  useTitle("Register");
 
   // uncontrolled component => controlled component
   const handleEmail = (e) => {

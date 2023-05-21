@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import useTitle from "../../../hooks/useTitle";
 import ToyTable from "./ToyTable";
 
 const AllToys = () => {
   const [postToys, setPostToys] = useState([]);
   const [searchText, setSearchText] = useState("");
+  useTitle("allToys");
 
   useEffect(() => {
     fetch("https://toy-ass11-server-side.vercel.app/allPostToys")

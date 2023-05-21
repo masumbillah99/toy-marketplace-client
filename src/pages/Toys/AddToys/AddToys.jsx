@@ -3,10 +3,12 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../providers/AuthProvider";
 import Select from "react-select";
 import { toast, ToastContainer } from "react-toastify";
+import useTitle from "../../../hooks/useTitle";
 
 const AddToys = () => {
   const { user } = useContext(AuthContext);
   const [selectedOption, setSelectedOption] = useState(null);
+  useTitle("addToys");
   const {
     register,
     handleSubmit,

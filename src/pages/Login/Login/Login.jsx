@@ -4,6 +4,7 @@ import { FaGoogle } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import loginImg from "../../../assets/login.png";
 import { AuthContext } from "../../../providers/AuthProvider";
+import useTitle from "../../../hooks/useTitle";
 
 const Login = () => {
   const { signInUser, googleSignIn, resetPassword } = useContext(AuthContext);
@@ -13,6 +14,7 @@ const Login = () => {
   const from = location?.state?.from?.pathname || "/";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  useTitle("Login");
 
   // sign in a new user (first time)
   const handleLogin = (e) => {
