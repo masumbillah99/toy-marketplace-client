@@ -16,7 +16,7 @@ const AddToys = () => {
   const onSubmit = (data, e) => {
     data.sub_category = selectedOption;
     console.log(data);
-    fetch("http://localhost:5000/postToys", {
+    fetch("https://toy-ass11-server-side.vercel.app/postToys", {
       method: "POST",
       headers: {
         "content-type": "application/json",

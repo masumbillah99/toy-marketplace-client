@@ -7,13 +7,15 @@ const AllToys = () => {
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5000/allPostToys")
+    fetch("https://toy-ass11-server-side.vercel.app/allPostToys")
       .then((res) => res.json())
       .then((data) => setPostToys(data));
   }, []);
 
   const handleSearch = () => {
-    fetch(`http://localhost:5000/toySearchByName/${searchText}`)
+    fetch(
+      `https://toy-ass11-server-side.vercel.app/toySearchByName/${searchText}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setPostToys(data);

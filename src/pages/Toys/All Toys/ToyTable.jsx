@@ -34,7 +34,7 @@ const ToyTable = ({ toys }) => {
                 </span>
               </td>
               <th>
-                <Link to={`/toys/${_id}`} className="btn btn-primary">
+                <Link to={`/allToys/${_id}`} className="btn btn-primary">
                   details
                 </Link>
               </th>

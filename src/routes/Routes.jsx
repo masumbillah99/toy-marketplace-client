@@ -9,8 +9,10 @@ import Login from "../pages/Login/Login/Login";
 import Register from "../pages/Login/Register/Register";
 import AddToys from "../pages/Toys/AddToys/AddToys";
 import AllToys from "../pages/Toys/All Toys/AllToys";
+import ToySingle from "../pages/Home/SingleToy/ToySingle";
 import MyToys from "../pages/Toys/MyToys/MyToys";
 import PrivateRoute from "./PrivateRoute";
+import ToyLayout from "../layouts/ToyLayout";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +39,10 @@ const router = createBrowserRouter([
     element: <Main />,
     errorElement: <ErrorPage />,
     children: [
+      {
+        path: "/",
+        element: <Navigate to="/category/0" />,
+      },
       {
         path: "/category/:id",
         element: <ToysCard />,
@@ -83,6 +89,12 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+    ],
+  },
+  {
+    path: "/",
+    element: <ToyLayout />,
+    children: [
       {
         path: "/allToys",
         element: (
@@ -90,6 +102,12 @@ const router = createBrowserRouter([
             <AllToys />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/allToys/:id",
+        element: <ToySingle />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/allPostToys/${params.id}`),
       },
     ],
   },

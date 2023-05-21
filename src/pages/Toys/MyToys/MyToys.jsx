@@ -1,16 +1,24 @@
 import { useState, useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../providers/AuthProvider";
 import UpdateModal from "./UpdateModal";
+import { useForm } from "react-hook-form";
 
 const MyToys = () => {
   const { user } = useContext(AuthContext);
   const [myToys, setMyToys] = useState([]);
   const [control, setControl] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myToys/${user?.email}`)
+    fetch(`https://toy-ass11-server-side.vercel.app/myToys/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setMyToys(data);
@@ -18,7 +26,8 @@ const MyToys = () => {
   }, [user, control]);
 
   const handleToyUpdate = (data) => {
-    fetch(`http://localhost:5000/updateToy/${data?._id}`, {
+    console.log(data);
+    fetch(`https://toy-ass11-server-side.vercel.app/updateToy/${data?._id}`, {
       method: "PUT",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
@@ -42,7 +51,7 @@ const MyToys = () => {
       confirmButtonText: "I'm sure",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/postToys/${id}`, {
+        fetch(`https://toy-ass11-server-side.vercel.app/postToys/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -93,12 +102,120 @@ const MyToys = () => {
                       Quantity: {toys?.quantity}
                     </span>
                   </td>
-                  <td className="text-right">
-                    <UpdateModal
-                      toys={toys}
-                      handleToyUpdate={handleToyUpdate}
-                    />
-                  </td>
+                  <th className="text-right">
+                    {/* The button to open modal */}
+                    <label
+                      htmlFor="my-modal-5"
+                      onClick={() => setModalShow(true)}
+                      className="btn btn-primary"
+                    >
+                      Edit
+                    </label>
+                    {modalShow && (
+                      <>
+                        <input
+                          type="checkbox"
+                          id="my-modal-5"
+                          className="modal-toggle"
+                        />
+                        <div className="modal">
+                          <div className="modal-box w-11/12 max-w-5xl">
+                            <h1 className="text-xl font-bold text-center">
+                              Update {toys?.toy_name} information
+                            </h1>
+                            <form
+                              onSubmit={handleSubmit(handleToyUpdate)}
+                              className="bg-[#F3F3F3] p-10 rounded-lg"
+                            >
+                              {errors.exampleRequired && (
+                                <span>This field is required</span>
+                              )}
+                              <div className="flex flex-col md:flex-row gap-3 mb-5">
+                                <div className="w-full">
+                                  <label>Available Quantity</label> <br />
+                                  <input
+                                    className="input input-bordered input-primary w-full mt-2"
+                                    {...register("quantity")}
+                                    placeholder="Available Quantity"
+                                    type="number"
+                                    defaultValue={toys?.quantity}
+                                  />
+                                </div>
+                                <div className="w-full">
+                                  <label>Toy Price</label> <br />
+                                  <input
+                                    className="input input-bordered input-primary w-full mt-2"
+                                    {...register("price")}
+                                    placeholder="Toy Price"
+                                    type="number"
+                                    defaultValue={toys?.price}
+                                  />
+                                </div>
+                              </div>
+                              <textarea
+                                className="textarea textarea-md input-primary w-full h-32"
+                                {...register("description")}
+                                placeholder="description"
+                                defaultValue={toys?.description}
+                              />
+                              <br />
+                              <input
+                                className="btn btn-primary w-full mt-5"
+                                value="Update Details"
+                                type="submit"
+                              />
+                              <input
+                                className="input w-full hidden"
+                                {...register("toy_name")}
+                                placeholder="Toy name"
+                                defaultValue={toys?.toy_name}
+                              />
+                              <input
+                                className="input w-full hidden"
+                                {...register("sub_category")}
+                                placeholder="category"
+                                defaultValue={toys?.sub_category?.value}
+                              />
+                              <input
+                                className="input w-full hidden"
+                                {...register("picture")}
+                                placeholder="picture"
+                                defaultValue={toys?.picture}
+                              />
+                              <input
+                                className="input input-bordered input-primary w-full hidden"
+                                {...register("seller_name")}
+                                placeholder="Seller Name"
+                                value={toys?.seller_name}
+                              />
+                              <input
+                                className="input input-bordered input-primary w-full hidden"
+                                {...register("seller_email")}
+                                value={toys?.seller_email}
+                                placeholder="your email"
+                                type="email"
+                              />
+                              <input
+                                className="input hidden"
+                                {...register("_id")}
+                                value={toys?._id}
+                              />
+                              <input
+                                className="input hidden"
+                                {...register("rating")}
+                                value={toys?.rating}
+                              />
+                            </form>
+                            <div className="modal-action">
+                              <label htmlFor="my-modal-5" className="btn">
+                                Close
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    )}
+                  </th>
                   <td className="text-right">
                     <button
                       onClick={() => handleToyDelete(toys?._id)}
