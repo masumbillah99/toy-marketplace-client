@@ -1,10 +1,8 @@
 import { useState, useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../providers/AuthProvider";
 import UpdateModal from "./UpdateModal";
-import { useForm } from "react-hook-form";
 import useTitle from "../../../hooks/useTitle";
 
 const MyToys = () => {
@@ -13,14 +11,9 @@ const MyToys = () => {
   const [control, setControl] = useState(false);
   const [modalShow, setModalShow] = useState(false);
   useTitle("myToys");
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myToys/${user?.email}`)
+    fetch(`https://toy-ass11-server-side.vercel.app/myToys/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setMyToys(data);
@@ -29,7 +22,7 @@ const MyToys = () => {
 
   const handleToyUpdate = (data) => {
     console.log(data);
-    fetch(`http://localhost:5000/updateToy/${data?._id}`, {
+    fetch(`https://toy-ass11-server-side.vercel.app/updateToy/${data?._id}`, {
       method: "PUT",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),

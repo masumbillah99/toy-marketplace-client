@@ -1,10 +1,6 @@
-import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { AuthContext } from "../../../providers/AuthProvider";
-import { toast, ToastContainer } from "react-toastify";
 
 const UpdateModal = ({ toys, handleToyUpdate }) => {
-  const { user } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -112,14 +108,6 @@ const UpdateModal = ({ toys, handleToyUpdate }) => {
           value={rating}
         />
       </form>
-      {/* <div className="modal-action">
-            <label htmlFor="my-modal-5" className="btn">
-              Close
-            </label>
-          </div> */}
-      {/* </div>
-      </div> */}
-      <ToastContainer />
     </>
   );
 };

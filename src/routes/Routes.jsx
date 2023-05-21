@@ -13,7 +13,6 @@ import ToySingle from "../pages/Home/SingleToy/ToySingle";
 import MyToys from "../pages/Toys/MyToys/MyToys";
 import PrivateRoute from "./PrivateRoute";
 import Blog from "../pages/shared/Blog/Blog";
-import Update from "../pages/Toys/Update/Update";
 
 const router = createBrowserRouter([
   {
@@ -48,7 +47,9 @@ const router = createBrowserRouter([
         path: "/categories/:id",
         element: <ToysCard />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/categories/${params.id}`),
+          fetch(
+            `https://toy-ass11-server-side.vercel.app/categories/${params.id}`
+          ),
       },
     ],
   },
@@ -68,7 +69,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/carToys/${params.id}`),
+          fetch(
+            `https://toy-ass11-server-side.vercel.app/carToys/${params.id}`
+          ),
       },
       {
         path: "/postToys",
@@ -86,12 +89,6 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      // {
-      //   path: "/update/:id",
-      //   element: <Update />,
-      //   loader: ({ params }) =>
-      //     fetch(`http://localhost:5000/update/${params.id}`),
-      // },
       {
         path: "/allPostToys",
         element: (
@@ -104,7 +101,9 @@ const router = createBrowserRouter([
         path: "/allPostToys/:id",
         element: <ToySingle />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/allPostToys/${params.id}`),
+          fetch(
+            `https://toy-ass11-server-side.vercel.app/allPostToys/${params.id}`
+          ),
       },
       {
         path: "/blog",

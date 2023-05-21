@@ -4,6 +4,8 @@ const ToyTable = ({ toys }) => {
   const { _id, seller_name, toy_name, sub_category, picture, price, quantity } =
     toys || {};
 
+  // console.log(sub_category);
+
   return (
     <>
       <div className="overflow-x-auto w-full">
@@ -19,7 +21,7 @@ const ToyTable = ({ toys }) => {
                   </div>
                   <div>
                     <h3 className="font-bold">{toy_name}</h3>
-                    <p className="text-smt">Category: {sub_category.value}</p>
+                    <p className="text-smt">Category: {sub_category?.value}</p>
                     <p className="text-smt text-opacity-50">
                       Seller: {seller_name}
                     </p>
@@ -34,7 +36,7 @@ const ToyTable = ({ toys }) => {
                 </span>
               </td>
               <th>
-                <Link to={`/allToys/${_id}`} className="btn btn-primary">
+                <Link to={`/allPostToys/${_id}`} className="btn btn-primary">
                   details
                 </Link>
               </th>
