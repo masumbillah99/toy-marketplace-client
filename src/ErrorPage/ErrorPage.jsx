@@ -12,7 +12,7 @@ const ErrorPage = () => {
         <Lottie className="w-1/2 mx-auto" animationData={img} />
         <p className="text-red-700">{error?.message}</p> <br />
         <Link
-          tp="/category/0"
+          to="/categories/0"
           className="bg-red-500 hover:bg-red-700 text-white py-3 px-4 mx-auto rounded-lg"
         >
           Back to HomePage

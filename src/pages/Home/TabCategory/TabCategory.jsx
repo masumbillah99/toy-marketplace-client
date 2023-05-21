@@ -7,7 +7,7 @@ const Category = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch("https://toy-ass11-server-side.vercel.app/categories")
+    fetch("http://localhost:5000/categories")
       .then((res) => res.json())
       .then((data) => setCategories(data));
   }, []);
@@ -21,13 +21,12 @@ const Category = () => {
         <TabList>
           {categories?.map((category) => (
             <Tab disabledClassName="border-0 outline-0" key={category.id}>
-              <Link to={`/category/${category.id}`}>
+              <Link to={`/categories/${category.id}`}>
                 {category.category_name}
               </Link>
             </Tab>
           ))}
         </TabList>
-        <TabPanel></TabPanel>
       </Tabs>
     </div>
   );

@@ -9,7 +9,7 @@ const AllToys = () => {
   useTitle("allToys");
 
   useEffect(() => {
-    fetch("https://toy-ass11-server-side.vercel.app/allPostToys")
+    fetch("http://localhost:5000/allPostToys")
       .then((res) => res.json())
       .then((data) => setPostToys(data));
   }, []);

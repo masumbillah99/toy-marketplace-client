@@ -16,14 +16,16 @@ const SingleToy = () => {
     seller_email,
   } = toyDetails || {};
 
+  // console.log(toyDetails);
+
   return (
     <div className="max-w-screen-xl mx-auto my-20">
-      <div className="card lg:card-side gap-3 shadow-xl p-5 mx-2 lg:mx-0">
+      <div className="flex flex-col justify-center shadow-xl p-5">
         <figure>
-          <img className="lg:w-full" src={picture} alt="car" />
+          <img className="w-full lg:w-1/2 mx-auto" src={picture} alt="car" />
         </figure>
-        <div className="card-body">
-          <h2 className="card-title text-4xl font-bold">{toy_name}</h2>
+        <div className="my-5">
+          <h2 className="text-4xl font-bold my-3">{toy_name}</h2>
           <p className="mt-3">{description}</p>
           <div className="grid grid-cols-2 gap-5 mt-5">
             <p className="bg-orange-400 rounded-lg p-5">

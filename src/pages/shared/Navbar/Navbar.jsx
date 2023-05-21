@@ -14,18 +14,18 @@ const Navbar = () => {
   const navItems = (
     <>
       <li>
-        <Link to="/category/0">Home</Link>
+        <Link to="/categories/0">Home</Link>
       </li>
       <li>
         <Link to="/blog">Blogs</Link>
       </li>
       <li>
-        <Link to="/allToys">All Toys</Link>
+        <Link to="/allPostToys">All Toys</Link>
       </li>
       {user ? (
         <>
           <li>
-            <Link to="/addToys">Add Toys</Link>
+            <Link to="/postToys">Add Toys</Link>
           </li>
           <li>
             <Link to="/myToys">My Toys</Link>

@@ -18,7 +18,7 @@ const AddToys = () => {
   const onSubmit = (data, e) => {
     data.sub_category = selectedOption;
     console.log(data);
-    fetch("https://toy-ass11-server-side.vercel.app/postToys", {
+    fetch("http://localhost:5000/postToys", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -98,13 +98,13 @@ const AddToys = () => {
         </div>
         <div className="flex flex-col md:flex-row gap-3 my-5">
           <input
-            className="input input-bordered input-primary w-1/2"
+            className="input input-bordered input-primary w-full"
             {...register("price", { required: true })}
             placeholder="Toy Price"
             type="number"
           />
           <input
-            className="input input-bordered input-primary w-1/2"
+            className="input input-bordered input-primary w-full"
             {...register("rating")}
             placeholder="Toy Rating"
             type="number"
@@ -112,7 +112,7 @@ const AddToys = () => {
           />
         </div>
         <textarea
-          className="textarea textarea-md input-primary w-full"
+          className="textarea textarea-md input-primary w-full h-28"
           {...register("description")}
           placeholder="description"
           defaultValue="This is a awesome car. I like this car"

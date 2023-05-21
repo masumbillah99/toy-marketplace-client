@@ -2,40 +2,23 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { toast, ToastContainer } from "react-toastify";
+import { useLoaderData } from "react-router-dom";
 
-const UpdateModal = ({ toys, handleToyUpdate }) => {
+const Update = (props) => {
   const { user } = useContext(AuthContext);
+  const toys = useLoaderData();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const {
-    _id,
-    picture,
-    toy_name,
-    seller_name,
-    price,
-    rating,
-    quantity,
-    description,
-    sub_category,
-    seller_email,
-  } = toys || {};
-  // console.log(toys);
+  console.log(toys);
 
   return (
     <>
-      {/* The button to open modal */}
-      {/* <label htmlFor="my-modal-5" className="btn btn-primary">
-        Edit
-      </label>
-      <input type="checkbox" id="my-modal-5" className="modal-toggle" /> */}
-      {/* <div className="modal">
-        <div className="modal-box w-11/12 max-w-5xl"> */}
       <h1 className="text-xl font-bold text-center">Update information</h1>
-      <form
+      {/* <form
         onSubmit={handleSubmit(handleToyUpdate)}
         className="bg-[#F3F3F3] p-10 rounded-lg"
       >
@@ -111,17 +94,10 @@ const UpdateModal = ({ toys, handleToyUpdate }) => {
           {...register("rating")}
           value={rating}
         />
-      </form>
-      {/* <div className="modal-action">
-            <label htmlFor="my-modal-5" className="btn">
-              Close
-            </label>
-          </div> */}
-      {/* </div>
-      </div> */}
+      </form> */}
       <ToastContainer />
     </>
   );
 };
 
-export default UpdateModal;
+export default Update;

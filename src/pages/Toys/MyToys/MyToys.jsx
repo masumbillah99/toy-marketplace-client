@@ -20,7 +20,7 @@ const MyToys = () => {
   } = useForm();
 
   useEffect(() => {
-    fetch(`https://toy-ass11-server-side.vercel.app/myToys/${user?.email}`)
+    fetch(`http://localhost:5000/myToys/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setMyToys(data);
@@ -29,7 +29,7 @@ const MyToys = () => {
 
   const handleToyUpdate = (data) => {
     console.log(data);
-    fetch(`https://toy-ass11-server-side.vercel.app/updateToy/${data?._id}`, {
+    fetch(`http://localhost:5000/updateToy/${data?._id}`, {
       method: "PUT",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
@@ -39,6 +39,7 @@ const MyToys = () => {
         if (result.modifiedCount > 0) {
           toast.success("updated successfully");
           setControl(!control);
+          console.log(data);
         }
       });
   };
@@ -105,6 +106,14 @@ const MyToys = () => {
                     </span>
                   </td>
                   <th className="text-right">
+                    {/* <Link
+                      to={`/update/${toys?._id}`}
+                      toys={toys}
+                      handleToyUpdate={handleToyUpdate}
+                      className="btn btn-primary ml-10"
+                    >
+                      Edit
+                    </Link> */}
                     {/* The button to open modal */}
                     <label
                       htmlFor="my-modal-5"
@@ -125,89 +134,10 @@ const MyToys = () => {
                             <h1 className="text-xl font-bold text-center">
                               Update {toys?.toy_name} information
                             </h1>
-                            <form
-                              onSubmit={handleSubmit(handleToyUpdate)}
-                              className="bg-[#F3F3F3] p-10 rounded-lg"
-                            >
-                              {errors.exampleRequired && (
-                                <span>This field is required</span>
-                              )}
-                              <div className="flex flex-col md:flex-row gap-3 mb-5">
-                                <div className="w-full">
-                                  <label>Available Quantity</label> <br />
-                                  <input
-                                    className="input input-bordered input-primary w-full mt-2"
-                                    {...register("quantity")}
-                                    placeholder="Available Quantity"
-                                    type="number"
-                                    defaultValue={toys?.quantity}
-                                  />
-                                </div>
-                                <div className="w-full">
-                                  <label>Toy Price</label> <br />
-                                  <input
-                                    className="input input-bordered input-primary w-full mt-2"
-                                    {...register("price")}
-                                    placeholder="Toy Price"
-                                    type="number"
-                                    defaultValue={toys?.price}
-                                  />
-                                </div>
-                              </div>
-                              <textarea
-                                className="textarea textarea-md input-primary w-full h-32"
-                                {...register("description")}
-                                placeholder="description"
-                                defaultValue={toys?.description}
-                              />
-                              <br />
-                              <input
-                                className="btn btn-primary w-full mt-5"
-                                value="Update Details"
-                                type="submit"
-                              />
-                              <input
-                                className="input w-full hidden"
-                                {...register("toy_name")}
-                                placeholder="Toy name"
-                                defaultValue={toys?.toy_name}
-                              />
-                              <input
-                                className="input w-full hidden"
-                                {...register("sub_category")}
-                                placeholder="category"
-                                defaultValue={toys?.sub_category?.value}
-                              />
-                              <input
-                                className="input w-full hidden"
-                                {...register("picture")}
-                                placeholder="picture"
-                                defaultValue={toys?.picture}
-                              />
-                              <input
-                                className="input input-bordered input-primary w-full hidden"
-                                {...register("seller_name")}
-                                placeholder="Seller Name"
-                                value={toys?.seller_name}
-                              />
-                              <input
-                                className="input input-bordered input-primary w-full hidden"
-                                {...register("seller_email")}
-                                value={toys?.seller_email}
-                                placeholder="your email"
-                                type="email"
-                              />
-                              <input
-                                className="input hidden"
-                                {...register("_id")}
-                                value={toys?._id}
-                              />
-                              <input
-                                className="input hidden"
-                                {...register("rating")}
-                                value={toys?.rating}
-                              />
-                            </form>
+                            <UpdateModal
+                              toys={toys}
+                              handleToyUpdate={handleToyUpdate}
+                            />
                             <div className="modal-action">
                               <label htmlFor="my-modal-5" className="btn">
                                 Close

@@ -187,6 +187,128 @@ const Blog = () => {
           </table>
         </div>
       </article>
+      <article className="my-5 shadow-xl p-3 md:p-10 mx-2 lg:mx-0">
+        <h1 className="text-3xl font-bold my-3">
+          3. What is express js? What is Nest JS?
+        </h1>
+        <div className="leading-8 px-10">
+          <p>Lets discuss about this two topics.</p>
+          <div>
+            <span className="text-xl font-semibold">Express JS</span>
+            <p>
+              Express.js is a popular web application framework for Node.js, a
+              runtime environment for executing JavaScript code outside the
+              browser. Express.js provides a set of features and utilities that
+              simplifies the process of building web applications and APIs.
+            </p>
+            <ul className="list-disc mx-10">
+              <li>
+                Express is a node js web application framework that provides
+                broad features for building web and mobile applications.
+              </li>
+              <li>
+                It is used to build a single page, multipage and hybrid web
+                application.
+              </li>
+              <li>
+                Its a layer built on the top of the Nodejs that helps manage
+                servers and routes.
+              </li>
+            </ul>
+            <span className="font-semibold">Why Express JS</span>
+            <ul className="list-disc mx-10">
+              <li>Configuration</li>
+              <li>Middleware</li>
+              <li>Session</li>
+              <li>Routing</li>
+              <li>View and templates</li>
+              <li>Security</li>
+            </ul>
+          </div>
+          <p>...........</p>
+          <div className="">
+            <span className="text-xl font-bold">NextJS</span>
+            <p>
+              Next.js is a popular framework for building React applications,
+              particularly for server-side rendering (SSR) and static site
+              generation (SSG).
+            </p>
+            <ul className="list-decimal mx-10">
+              <li>
+                Server-side Rendering (SSR): Next.js allows you to render React
+                components on the server, sending pre-rendered HTML to the
+                client. This helps improve initial page load performance, SEO,
+                and provides a better user experience.
+              </li>
+              <li>
+                Static Site Generation (SSG): Next.js supports generating static
+                HTML files at build time, which can be deployed to a static
+                hosting provider. This approach eliminates the need for a server
+                at runtime, resulting in fast-loading pages and simplified
+                infrastructure.
+              </li>
+              <li>
+                {" "}
+                Automatic Code Splitting: Next.js automatically splits your
+                JavaScript code into smaller chunks based on the page routes.
+                This allows for better performance as only the required code is
+                loaded for each page.
+              </li>
+              <li>
+                Built-in Head Management: Next.js provides an easy way to manage
+                the document head (title, meta tags, etc.) for each page,
+                allowing you to control the SEO and presentation of your app.
+              </li>
+              <li>
+                CSS and Styling: Next.js supports various approaches for styling
+                your components, including CSS modules, CSS-in-JS libraries like
+                styled-components, and global styles.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </article>
+      <article className="my-5 shadow-xl p-3 md:p-10 mx-2 lg:mx-0">
+        <h1 className="text-3xl font-bold my-3">
+          4. What is MongoDB aggregate and how does it work?
+        </h1>
+        <div className="leading-8 px-10">
+          <p>
+            In MongoDB, the aggregate method is used to perform advanced data
+            processing operations and transformations on collections of
+            documents. It allows you to perform complex aggregations, such as
+            grouping, filtering, sorting, joining, and computing computed
+            fields, all within the database.
+          </p>
+          <p>Here some method works:</p>
+          <ul className="list-decimal mx-10">
+            <li>
+              Define the pipeline stages: You construct an array of objects
+              representing the different stages of the aggregation pipeline.
+              Each object defines a stage and its associated parameters.{" "}
+            </li>
+            <li>
+              Execute the aggregation: You pass the pipeline array to the
+              aggregate method, which executes the aggregation operation on the
+              specified collection. The documents flow through the pipeline, and
+              each stage processes and modifies the data based on its defined
+              operation.
+            </li>
+            <li>
+              {" "}
+              After the aggregation is performed, the aggregate method returns
+              the result as a cursor or an array of documents. The output can be
+              further processed or used by the application as needed.
+            </li>
+          </ul>
+          <p>
+            Each stage can utilize various operators and expressions to define
+            its behavior, enabling powerful data manipulations. These operators
+            include arithmetic operations, logical operations, conditional
+            expressions, array operations, date operations, and more.
+          </p>
+        </div>
+      </article>
     </div>
   );
 };
