@@ -13,6 +13,7 @@ import ToySingle from "../pages/Home/SingleToy/ToySingle";
 import MyToys from "../pages/Toys/MyToys/MyToys";
 import PrivateRoute from "./PrivateRoute";
 import ToyLayout from "../layouts/ToyLayout";
+import Blog from "../pages/shared/Blog/Blog";
 
 const router = createBrowserRouter([
   {
@@ -108,6 +109,10 @@ const router = createBrowserRouter([
         element: <ToySingle />,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/allPostToys/${params.id}`),
+      },
+      {
+        path: "/blog",
+        element: <Blog />,
       },
     ],
   },
