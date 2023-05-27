@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import { Tab, TabList, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 
 const Category = () => {

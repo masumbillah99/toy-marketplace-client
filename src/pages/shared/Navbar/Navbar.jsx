@@ -7,7 +7,7 @@ const Navbar = () => {
 
   const handleLogOut = () => {
     logOutUser()
-      .then()
+      .then(() => localStorage.removeItem("toy-access-token"))
       .catch((error) => console.log(error));
   };
 

@@ -12,13 +12,19 @@ const MyToys = () => {
   const [modalShow, setModalShow] = useState(false);
   useTitle("myToys");
 
+  const url = `http://localhost:5000/allPostToys?email=${user.email}`;
   useEffect(() => {
-    fetch(`https://toy-ass11-server-side.vercel.app/myToys/${user?.email}`)
+    fetch(url, {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("toy-access-token")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         setMyToys(data);
       });
-  }, [user, control]);
+  }, [user, url, control]);
 
   const handleToyUpdate = (data) => {
     console.log(data);

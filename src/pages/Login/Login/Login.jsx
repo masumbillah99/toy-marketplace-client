@@ -21,10 +21,25 @@ const Login = () => {
     e.preventDefault();
     signInUser(email, password)
       .then((result) => {
-        const loggedUser = result.user;
+        const user = result.user;
+        const loggedUser = {
+          email: user.email,
+        };
         toast.success("Successfully Login");
-        navigate(from);
-        e.target.reset();
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(loggedUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("jwt response", data);
+            // warning: local storage is not the best (second best place) to store access token
+            localStorage.setItem("toy-access-token", data.token);
+            navigate(from, { replace: true });
+          });
       })
       .catch((error) => {
         toast.error(error.code);
@@ -34,8 +49,7 @@ const Login = () => {
   // google login with popup
   const handleGoogleLogin = () => {
     googleSignIn()
-      .then((result) => {
-        const user = result.user;
+      .then(() => {
         toast.success("successfully login with google");
         navigate(from);
       })
@@ -43,20 +57,6 @@ const Login = () => {
         toast.error(error.code);
       });
   };
-
-  //   // github login with popup
-  //   const handleGithubLogin = () => {
-  //     githubSignIn()
-  //       .then((result) => {
-  //         const user = result.user;
-  //         toast.success("successfully login with google");
-  //         navigate(from);
-  //         console.log(user);
-  //       })
-  //       .catch((error) => {
-  //         toast.error(error.code);
-  //       });
-  //   };
 
   // handle reset password when you forget password
   const handleResetPassword = () => {
