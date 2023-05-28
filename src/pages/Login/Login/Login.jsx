@@ -26,7 +26,7 @@ const Login = () => {
           email: user.email,
         };
         toast.success("Successfully Login");
-        fetch("http://localhost:5000/jwt", {
+        fetch("https://toy-ass11-server-side.vercel.app/jwt", {
           method: "POST",
           headers: {
             "content-type": "application/json",

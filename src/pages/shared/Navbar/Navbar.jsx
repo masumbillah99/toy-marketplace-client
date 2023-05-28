@@ -20,13 +20,13 @@ const Navbar = () => {
         <Link to="/blog">Blogs</Link>
       </li>
       <li>
-        <Link to="/allPostToys">All Toys</Link>
+        <Link to="/postToys">Add Toys</Link>
       </li>
       {user ? (
         <>
-          <li>
-            <Link to="/postToys">Add Toys</Link>
-          </li>
+          {/* <li>
+            <Link to="/allPostToys">All Toys</Link>
+          </li> */}
           <li>
             <Link to="/myToys">My Toys</Link>
           </li>

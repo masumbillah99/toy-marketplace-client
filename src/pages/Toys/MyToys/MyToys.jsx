@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../../providers/AuthProvider";
 import UpdateModal from "./UpdateModal";
 import useTitle from "../../../hooks/useTitle";
+import { useNavigate } from "react-router-dom";
 
 const MyToys = () => {
   const { user } = useContext(AuthContext);
@@ -11,8 +12,9 @@ const MyToys = () => {
   const [control, setControl] = useState(false);
   const [modalShow, setModalShow] = useState(false);
   useTitle("myToys");
+  const navigate = useNavigate();
 
-  const url = `http://localhost:5000/allPostToys?email=${user.email}`;
+  const url = `https://toy-ass11-server-side.vercel.app/allPostToys?email=${user.email}`;
   useEffect(() => {
     fetch(url, {
       method: "GET",
@@ -22,9 +24,13 @@ const MyToys = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setMyToys(data);
+        if (!data.error) {
+          setMyToys(data);
+        } else {
+          navigate("/");
+        }
       });
-  }, [user, url, control]);
+  }, [user, url, navigate, control]);
 
   const handleToyUpdate = (data) => {
     console.log(data);

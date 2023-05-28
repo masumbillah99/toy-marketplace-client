@@ -21,6 +21,9 @@ const AllToys = () => {
       .then((res) => res.json())
       .then((data) => {
         setPostToys(data);
+      })
+      .catch((error) => {
+        <p>Data not found: {error}</p>;
       });
   };
 
