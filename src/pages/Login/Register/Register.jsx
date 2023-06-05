@@ -1,20 +1,26 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import loginImg from "../../../assets/login.png";
 import { BiError } from "react-icons/bi";
 import { AuthContext } from "../../../providers/AuthProvider";
 import useTitle from "../../../hooks/useTitle";
+import { useForm } from "react-hook-form";
+
+const img_hoisting_token = import.meta.env.VITE_Image_Upload_Token;
 
 const Register = () => {
   const { registerUser, updateUserProfile } = useContext(AuthContext);
-  const [name, setName] = useState("");
-  const [photo, setPhoto] = useState("");
+  const { register, handleSubmit } = useForm();
+  // const [name, setName] = useState("");
+  // const [photo, setPhoto] = useState("");
+  // const [image, setImage] = useState("");
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
   const [passError, setPassError] = useState("");
   useTitle("Register");
+  const navigate = useNavigate();
 
   // uncontrolled component => controlled component
   const handleEmail = (e) => {
@@ -43,22 +49,49 @@ const Register = () => {
     }
   };
 
-  const handleRegistration = (e) => {
+  // handle user registration
+  const handleRegistration = (data, e) => {
     e.preventDefault();
-    console.log(name, photo, email, password);
+    const formData = new FormData();
+    formData.append("image", data.image[0]);
+    const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hoisting_token}`;
 
-    if ((name, photo, email, password)) {
-      registerUser(email, password)
-        .then((result) => {
-          const createdUser = result.user;
-          updateUserProfile(createdUser, name, photo);
-          toast.success("Successfully registered.");
-          console.log(createdUser);
-        })
-        .catch((error) => {
-          toast.error(error.message);
-        });
-    }
+    fetch(img_hosting_url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imageData) => {
+        if (imageData.success) {
+          const imgURL = imageData.data.display_url;
+          // console.log(imgURL);
+          registerUser(data.email, data.password).then((result) => {
+            updateUserProfile(data.name, imgURL)
+              .then(() => {
+                console.log(result.user);
+                toast.success("Sign up successful");
+                navigate("/login");
+              })
+              .catch((err) => {
+                console.log(err.message);
+                toast.error(err.message);
+              });
+          });
+        }
+      });
+
+    // if ((name, photo, email, password)) {
+    //   registerUser(email, password)
+    //     .then((result) => {
+    //       const createdUser = result.user;
+    //       updateUserProfile(createdUser, name, photo);
+    //       toast.success("Successfully registered.");
+    //       console.log(createdUser);
+    //     })
+    //     .catch((error) => {
+    //       toast.error(error.message);
+    //     });
+    // }
   };
 
   return (
@@ -69,12 +102,11 @@ const Register = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 items-center">
         <img src={loginImg} className="w-3/4 lg:w-full" alt="" />
         <div>
-          <form onSubmit={handleRegistration}>
+          <form onSubmit={handleSubmit(handleRegistration)}>
             <div className="relative z-0 mb-6 w-3/4 mx-auto group">
               <input
-                onChange={(e) => setName(e.target.value)}
                 type="text"
-                name="name"
+                {...register("name")}
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
               />
@@ -85,13 +117,13 @@ const Register = () => {
                 Your Name
               </label>
             </div>
-            <div className="relative z-0 mb-6 w-3/4 mx-auto group">
+
+            {/* <div className="relative z-0 mb-6 w-3/4 mx-auto group">
               <input
-                onChange={(e) => setPhoto(e.target.value)}
-                type="text"
-                name="photo"
-                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=" "
+                className="input input-bordered input-primary w-full"
+                {...register("toy_name")}
+                placeholder="Toy name"
+                defaultValue="Music Car"
               />
               <label
                 htmlFor="photo"
@@ -99,16 +131,23 @@ const Register = () => {
               >
                 Photo URL
               </label>
+            </div> */}
+
+            <div className="relative z-0 mb-6 w-3/4 mx-auto group">
+              <input
+                className="file-input file-input-bordered w-full"
+                {...register("image", { required: true })}
+                type="file"
+              />
             </div>
             <div className="relative z-0 mb-6 w-3/4 mx-auto group">
               <input
                 type="email"
-                name="email"
+                {...register("email")} //{required: true}
                 value={email}
                 onChange={handleEmail}
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
-                required
               />
               <label
                 htmlFor="email"
@@ -126,12 +165,11 @@ const Register = () => {
             <div className="relative z-0 mb-6 w-3/4 mx-auto group">
               <input
                 type="password"
-                name="password"
+                {...register("password")}
                 value={password}
                 onChange={handlePassword}
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
-                required
               />
               <label
                 htmlFor="password"
