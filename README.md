@@ -30,7 +30,7 @@ E-Toy Car Store is a single page web application. Basically this is a toy buying
 
 # Live Link
 
-Client side link hosted in Firebase --> https://e-car-toys-store.web.app
+Live side link hosted in Firebase --> https://e-car-toys-store.web.app
 
 Server side code link --> https://github.com/masumbillah99/toy-marketplace-server
 
