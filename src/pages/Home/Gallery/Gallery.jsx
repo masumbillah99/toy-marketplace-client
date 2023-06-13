@@ -23,22 +23,86 @@ const Gallery = () => {
       <hr className="bg-indigo-700 w-1/2 lg:w-1/3 h-1 mt-2 mb-5" />
       <LazyLoad offset={300}>
         <div className="grid grid-cols-4 gap-3">
-          <img src={seven} alt="" />
-          <img src={two} alt="" />
-          <img src={fourteen} alt="" />
-          <img src={twelve} alt="" />
-          <img src={nine} alt="" />
-          <img src={five} alt="" />
-          <img src={one} alt="" />
-          <img src={sixteen} alt="" />
-          <img src={four} alt="" />
-          <img src={six} alt="" />
-          <img src={ten} alt="" />
-          <img src={three} alt="" />
-          <img src={eight} alt="" />
-          <img src={thirteen} alt="" />
-          <img src={eleven} alt="" />
-          <img src={fifteen} alt="" />
+          <img
+            src={seven}
+            alt="gallery img"
+            className="hover:scale-110 transition-all hover:rounded-lg"
+          />
+          <img
+            src={two}
+            alt="gallery img"
+            className="hover:scale-110 transition-all hover:rounded-lg"
+          />
+          <img
+            src={fourteen}
+            alt="gallery img"
+            className="hover:scale-110 transition-all hover:rounded-lg"
+          />
+          <img
+            src={twelve}
+            alt="gallery img"
+            className="hover:scale-110 transition-all hover:rounded-lg"
+          />
+          <img
+            src={nine}
+            alt="gallery img"
+            className="hover:scale-110 transition-all hover:rounded-lg"
+          />
+          <img
+            src={five}
+            alt="gallery img"
+            className="hover:scale-110 transition-all hover:rounded-lg"
+          />
+          <img
+            src={one}
+            alt="gallery img"
+            className="hover:scale-110 transition-all hover:rounded-lg"
+          />
+          <img
+            src={sixteen}
+            alt="gallery img"
+            className="hover:scale-110 transition-all hover:rounded-lg"
+          />
+          <img
+            src={four}
+            alt="gallery img"
+            className="hover:scale-110 transition-all hover:rounded-lg"
+          />
+          <img
+            src={six}
+            alt="gallery img"
+            className="hover:scale-110 transition-all hover:rounded-lg"
+          />
+          <img
+            src={ten}
+            alt="gallery img"
+            className="hover:scale-110 transition-all hover:rounded-lg"
+          />
+          <img
+            src={three}
+            alt="gallery img"
+            className="hover:scale-110 transition-all hover:rounded-lg"
+          />
+          <img
+            src={eight}
+            alt="gallery img"
+            className="hover:scale-110 transition-all hover:rounded-lg"
+          />
+          <img
+            src={thirteen}
+            alt="gallery img"
+            className="hover:scale-110 transition-all hover:rounded-lg"
+          />
+          <img
+            src={eleven}
+            alt="gallery img"
+            className="hover:scale-110 transition-all hover:rounded-lg"
+          />
+          <img
+            src={fifteen}
+            alt="gallery img"
+            className="hover:scale-110 transition-all hover:rounded-lg"
+          />
         </div>
       </LazyLoad>
     </div>

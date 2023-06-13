@@ -15,7 +15,11 @@ const CarToys = () => {
             key={toys?._id}
           >
             <figure>
-              <img className="h-72 w-full" src={toys?.picture} alt="Shoes" />
+              <img
+                className="h-72 w-full hover:scale-125 transition-all"
+                src={toys?.picture}
+                alt="Shoes"
+              />
             </figure>
             <div className="card-body">
               <h2 className="card-title text-2xl font-bold">

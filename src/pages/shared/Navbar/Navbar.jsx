@@ -28,20 +28,21 @@ const Navbar = () => {
             <Link to="/allPostToys">All Toys</Link>
           </li> */}
           <li>
-            <Link to="/myToys">My Toys</Link>
+            <Link to="/">My Toys</Link>
           </li>
           <li>
             <img
-              className="w-20"
+              className="w-20 h-20"
               src={user.photoURL}
               alt="user photo"
               title={user.displayName}
+              referrerPolicy={"no-referrer"}
             />
           </li>
           <li>
             <button
               onClick={handleLogOut}
-              className="text-white bg-red-500 px-5 py-1"
+              className="text-white bg-red-500 h-16"
             >
               Logout
             </button>
@@ -88,7 +89,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="navbar-end hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{navItems}</ul>
+          <ul className="menu menu-horizontal items-center px-1">{navItems}</ul>
         </div>
       </div>
     </nav>

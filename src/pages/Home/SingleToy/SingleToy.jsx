@@ -22,23 +22,22 @@ const SingleToy = () => {
     <div className="max-w-screen-xl mx-auto my-20">
       <div className="flex flex-col justify-center shadow-xl p-5">
         <figure>
-          <img className="w-full lg:w-1/2 mx-auto" src={picture} alt="car" />
+          <img className="w-full lg:w-3/4 mx-auto" src={picture} alt="car" />
         </figure>
-        <div className="my-5">
-          <h2 className="text-4xl font-bold my-3">{toy_name}</h2>
-          <p className="mt-3">{description}</p>
-          <div className="grid grid-cols-2 gap-5 mt-5">
-            <p className="bg-orange-400 rounded-lg p-5">
-              Category:{" "}
-              <span className="font-bold text-xl">{sub_category}</span>
+        <div className="my-7 lg:mx-28">
+          <h2 className="text-4xl font-bold">{toy_name}</h2>
+          <p className="text-xl my-5 text-red-600">
+            Price: ${price}
+            <span className="bg-gray-300 p-2 ms-3 rounded-md">SAVE 20%</span>
+          </p>
+          <p className="text-xl">Category: {sub_category}</p>
+          <div className="flex flex-col md:flex-row gap-5 justify-between mt-5">
+            <p className="">
+              Available Quantity:
+              <span className="font-bold text-xl"> {quantity}</span>
             </p>
-            <p className="bg-orange-400 rounded-lg p-5">
-              Quantity: <span className="font-bold text-xl">{quantity}</span>
-            </p>
-            <p className="bg-orange-400 rounded-lg p-5">
-              Price: <span className="font-bold text-xl">${price}</span>
-            </p>
-            <div className="bg-blue-200 p-5 rounded-lg">
+            <div className="flex items-center gap-5">
+              Customer Review:
               <Rating
                 style={{ maxWidth: 100 }}
                 value={Math.round(rating || 0)}
@@ -47,8 +46,8 @@ const SingleToy = () => {
             </div>
           </div>
           <div className="my-5">
-            <h4 className="text-xl font-bold">Seller Information</h4>
-            <div className="bg-orange-400 p-5 text-white mt-3 rounded-lg">
+            <h4 className="text-xl underline">Seller Information:</h4>
+            <div className="ml-10 mt-2">
               <p className="flex items-center gap-3 text-2xl">
                 <FaUserCircle />
                 {seller_name}
@@ -58,6 +57,14 @@ const SingleToy = () => {
                 {seller_email}
               </p>
             </div>
+            <p className="bg-gray-300 p-5 mt-7 rounded-lg">
+              {description} Lorem ipsum dolor sit amet consectetur adipisicing
+              elit. Tempore, dolorum esse minima voluptates perspiciatis
+              eligendi animi, repellendus corrupti ducimus delectus magni
+              reprehenderit a dicta eum quo, laboriosam illum laudantium
+              blanditiis!
+            </p>
+            <button className="btn btn-warning w-full mt-5">Add to Cart</button>
           </div>
         </div>
       </div>
