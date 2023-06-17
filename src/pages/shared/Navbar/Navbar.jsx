@@ -28,7 +28,7 @@ const Navbar = () => {
             <Link to="/allPostToys">All Toys</Link>
           </li> */}
           <li>
-            <Link to="/">My Toys</Link>
+            <Link to="/myToys">My Toys</Link>
           </li>
           <li>
             <img

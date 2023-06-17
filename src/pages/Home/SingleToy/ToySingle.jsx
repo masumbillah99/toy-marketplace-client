@@ -16,6 +16,8 @@ const ToySingle = () => {
     seller_email,
   } = toyDetails || {};
 
+  console.log("object");
+
   return (
     <div className="max-w-screen-xl mx-auto my-20">
       <div className="flex flex-col justify-center shadow-xl p-5">
